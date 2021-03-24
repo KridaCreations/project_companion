@@ -1,5 +1,38 @@
-[gd_scene format=2]
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/fonts/eurocine/Eurocine Regular.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://scences/main_screen.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 40
+font_data = ExtResource( 1 )
 
 [node name="main_screen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="start_project" type="Button" parent="."]
+margin_left = 315.72
+margin_top = 173.752
+margin_right = 650.72
+margin_bottom = 249.752
+custom_fonts/font = SubResource( 1 )
+text = "start_project"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="quit_button" type="Button" parent="."]
+margin_left = 315.72
+margin_top = 273.341
+margin_right = 650.72
+margin_bottom = 349.341
+custom_fonts/font = SubResource( 1 )
+text = "quit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
