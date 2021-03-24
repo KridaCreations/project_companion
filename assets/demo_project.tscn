@@ -1,11 +1,12 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/fonts/eurocine/Eurocine Regular.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/demo_project.gd" type="Script" id=2]
 [ext_resource path="res://assets/FlatUI/kenneyUI-yellow.tres" type="Theme" id=3]
+[ext_resource path="res://assets/list.gd" type="Script" id=4]
 
-[sub_resource type="DynamicFont" id=1]
-size = 22
+[sub_resource type="DynamicFont" id=4]
+size = 20
 font_data = ExtResource( 1 )
 
 [sub_resource type="Theme" id=2]
@@ -13,56 +14,15 @@ font_data = ExtResource( 1 )
 [sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.956863, 0.294118, 0.0745098, 1 )
 
-[sub_resource type="DynamicFont" id=4]
-size = 40
+[sub_resource type="DynamicFont" id=32]
+size = 22
 font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=33]
+bg_color = Color( 0.886275, 0.913725, 0.0156863, 1 )
 
 [node name="demo_project" type="Node2D"]
 script = ExtResource( 2 )
-
-[node name="project_view" type="ScrollContainer" parent="."]
-margin_top = 122.0
-margin_right = 1026.0
-margin_bottom = 600.0
-scroll_horizontal = 3
-scroll_vertical = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="list_container" type="HBoxContainer" parent="project_view"]
-margin_right = 1026.0
-margin_bottom = 478.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_constants/separation = 11
-
-[node name="list" type="VBoxContainer" parent="project_view/list_container"]
-margin_right = 200.0
-margin_bottom = 478.0
-rect_min_size = Vector2( 200, 10 )
-size_flags_vertical = 3
-theme = ExtResource( 3 )
-custom_constants/separation = 13
-
-[node name="Button" type="Button" parent="project_view/list_container/list"]
-margin_right = 200.0
-margin_bottom = 60.0
-rect_min_size = Vector2( 0, 60 )
-custom_fonts/font = SubResource( 1 )
-text = "add new card"
-
-[node name="Label" type="Label" parent="project_view/list_container/list"]
-margin_top = 72.0
-margin_right = 200.0
-margin_bottom = 132.0
-rect_min_size = Vector2( 0, 60 )
-theme = SubResource( 2 )
-custom_styles/normal = SubResource( 3 )
-custom_fonts/font = SubResource( 1 )
-text = "name of the list"
-align = 1
-valign = 1
 
 [node name="back" type="Button" parent="."]
 margin_right = 174.0
@@ -82,3 +42,145 @@ text = "New_list"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="project_view" type="ScrollContainer" parent="."]
+margin_top = 122.0
+margin_right = 1026.0
+margin_bottom = 600.0
+size_flags_horizontal = 11
+size_flags_vertical = 11
+scroll_horizontal = 3
+scroll_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="list_container" type="HBoxContainer" parent="project_view"]
+margin_right = 1026.0
+margin_bottom = 478.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 11
+
+[node name="list" type="VBoxContainer" parent="."]
+margin_left = -213.546
+margin_top = 88.0
+margin_right = -13.5463
+margin_bottom = 566.0
+rect_min_size = Vector2( 200, 10 )
+size_flags_vertical = 3
+theme = ExtResource( 3 )
+custom_constants/separation = 13
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+demo_card_path = NodePath("../card")
+
+[node name="new_card_name" type="LineEdit" parent="list"]
+margin_right = 200.0
+margin_bottom = 48.4343
+theme = ExtResource( 3 )
+align = 3
+clear_button_enabled = true
+placeholder_text = "add new_card"
+caret_blink = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="detail" type="Label" parent="list"]
+margin_top = 60.0
+margin_right = 200.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 0, 60 )
+theme = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 32 )
+text = "name of the "
+align = 1
+valign = 1
+autowrap = true
+
+[node name="blank" type="Control" parent="."]
+margin_left = -446.892
+margin_top = 45.4437
+margin_right = -246.892
+margin_bottom = 105.444
+rect_min_size = Vector2( 0, 60 )
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="card" type="Label" parent="."]
+margin_left = -477.845
+margin_top = 162.683
+margin_right = -277.845
+margin_bottom = 222.683
+rect_min_size = Vector2( 0, 60 )
+custom_styles/normal = SubResource( 33 )
+custom_fonts/font = SubResource( 32 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="."]
+visible = false
+margin_right = 1024.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+margin_right = 1014.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0.0745098, 0.0705882, 0.0705882, 0.654902 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit" type="LineEdit" parent="Control"]
+margin_left = 402.09
+margin_top = 271.836
+margin_right = 626.09
+margin_bottom = 324.836
+theme = ExtResource( 3 )
+align = 3
+clear_button_enabled = true
+caret_blink = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="done" type="Button" parent="Control"]
+margin_left = 402.09
+margin_top = 324.836
+margin_right = 489.09
+margin_bottom = 384.836
+custom_fonts/font = SubResource( 4 )
+text = "done"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="cancel" type="Button" parent="Control"]
+margin_left = 529.942
+margin_top = 324.836
+margin_right = 623.942
+margin_bottom = 384.836
+custom_fonts/font = SubResource( 4 )
+text = "cancel"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="new_list" to="." method="_on_new_list_pressed"]
+[connection signal="text_entered" from="list/new_card_name" to="list" method="_on_new_card_name_text_entered"]
+[connection signal="text_entered" from="Control/LineEdit" to="." method="_on_LineEdit_text_entered"]
+[connection signal="pressed" from="Control/done" to="." method="_on_done_pressed"]
+[connection signal="pressed" from="Control/cancel" to="." method="_on_cancel_pressed"]
