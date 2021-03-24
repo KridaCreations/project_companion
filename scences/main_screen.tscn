@@ -36,3 +36,4 @@ text = "quit"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="pressed" from="start_project" to="." method="_on_start_project_pressed"]
