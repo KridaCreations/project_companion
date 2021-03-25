@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/fonts/eurocine/Eurocine Regular.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/demo_project.gd" type="Script" id=2]
@@ -7,13 +7,6 @@
 [ext_resource path="res://icon.png" type="Texture" id=5]
 
 [sub_resource type="DynamicFont" id=1]
-size = 20
-font_data = ExtResource( 1 )
-
-[sub_resource type="StyleBoxFlat" id=6]
-bg_color = Color( 0.882353, 0.262745, 0.0705882, 1 )
-
-[sub_resource type="DynamicFont" id=7]
 size = 20
 font_data = ExtResource( 1 )
 
@@ -55,6 +48,7 @@ __meta__ = {
 margin_top = 122.0
 margin_right = 1026.0
 margin_bottom = 600.0
+rect_clip_content = false
 size_flags_horizontal = 11
 size_flags_vertical = 11
 follow_focus = true
@@ -65,23 +59,9 @@ __meta__ = {
 }
 
 [node name="list_container" type="HBoxContainer" parent="project_view"]
-margin_right = 100.0
 margin_bottom = 478.0
 size_flags_vertical = 3
 custom_constants/separation = 11
-
-[node name="Label" type="Label" parent="project_view/list_container"]
-margin_right = 100.0
-margin_bottom = 478.0
-rect_min_size = Vector2( 100, 50 )
-size_flags_vertical = 3
-custom_styles/normal = SubResource( 6 )
-custom_fonts/font = SubResource( 7 )
-autowrap = true
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="blank" type="Control" parent="."]
 margin_left = -446.892

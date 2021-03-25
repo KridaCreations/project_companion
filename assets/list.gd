@@ -17,11 +17,9 @@ func _ready():
 func _physics_process(delta):
 	if follow == true:
 		_set_global_position(get_global_mouse_position() - offset)
-		#_set_position(get_global_mouse_position() - offset)
 
 func _on_new_card_name_text_entered(new_text):
 	if new_text!= "" :
-		print("here")
 		var new_card = demo_card.duplicate()
 		add_child_below_node($new_card_name,new_card)
 		new_card.text = new_text
@@ -36,15 +34,18 @@ func _on_detail_gui_input(event):
 	if event is InputEventMouseButton:
 		if event.pressed == true:
 			follow = true
+			root.child_focused = true
+			root.focused_node = self
 			last_position = get_global_position()
-			#get_tree().root.get_node(root_name).add_child(self)
-			
-			#get_parent().remove_child(self)
-			#offset = get_global_mouse_position() - self.get_position()
 			offset = get_global_mouse_position() - self.get_global_position()
 		elif event.pressed == false:
 			set_global_position(last_position)
 			follow = false
-
+			root.list_container.move_child(self,self.get_index())
+			root.child_focused = false
+			root.focused_node = null
+			last_position = get_global_position()
+#			offset = get_global_mouse_position() - self.get_global_position()
+			offset = Vector2(0,0)
 
 
