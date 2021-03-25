@@ -16,7 +16,7 @@ func _physics_process(delta):
 	if child_focused == true:
 		var mouse_position = get_global_mouse_position()
 		for i in list_container.get_children():
-			if i.get_rect().has_point(mouse_position) and i != focused_node:
+			if i.get_global_rect().has_point(mouse_position) and i != focused_node:
 				list_container.move_child(focused_node,i.get_index())
 				focused_node.last_position = i.get_global_position()
 				
@@ -45,16 +45,6 @@ func _on_cancel_pressed():
 
 func _on_done_pressed():
 	if $Control/LineEdit.text != "":
-#		$Control.visible = false
-#		var new_node = demo_list.duplicate(4)
-#		list_container.add_child(new_node)
-#		new_node.root_name = name
-#		new_node.get_node("detail").text = $Control/LineEdit.text
-#		new_node.get_node("new_card_name").connect("text_entered",new_node,"_on_new_card_name_text_entered")
-#		(new_node.get_node("detail").connect("gui_input",new_node,"_on_detail_gui_input"))
-#		new_node.demo_card = $card
-#		$Control/LineEdit.text = ""
-		
 		$Control/LineEdit.text = ""
 		$Control.visible = false
 		var new_node = demo_list.duplicate(4)

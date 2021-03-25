@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/demo_project.gd" type="Script" id=2]
 [ext_resource path="res://assets/FlatUI/kenneyUI-yellow.tres" type="Theme" id=3]
 [ext_resource path="res://assets/list.gd" type="Script" id=4]
-[ext_resource path="res://icon.png" type="Texture" id=5]
+[ext_resource path="res://assets/card.gd" type="Script" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
@@ -80,12 +80,14 @@ margin_top = 13.4437
 margin_right = -277.845
 margin_bottom = 73.4437
 rect_min_size = Vector2( 0, 60 )
+mouse_filter = 1
 custom_styles/normal = SubResource( 2 )
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 align = 1
 valign = 1
 autowrap = true
+script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -153,10 +155,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 222.7, 45.4437 )
-texture = ExtResource( 5 )
-
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_left = -246.892
 margin_top = 13.4437
@@ -174,10 +172,10 @@ size_flags_vertical = 3
 color = Color( 0.227451, 0.196078, 0.196078, 1 )
 
 [node name="list" type="VBoxContainer" parent="."]
-margin_left = -477.845
-margin_top = 105.444
-margin_right = -277.845
-margin_bottom = 583.444
+margin_left = -246.892
+margin_top = 254.444
+margin_right = -46.892
+margin_bottom = 491.444
 rect_min_size = Vector2( 200, 10 )
 size_flags_vertical = 3
 theme = ExtResource( 3 )
