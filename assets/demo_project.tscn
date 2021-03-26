@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/fonts/eurocine/Eurocine Regular.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/demo_project.gd" type="Script" id=2]
@@ -17,16 +17,31 @@ bg_color = Color( 0.886275, 0.913725, 0.0156863, 1 )
 size = 22
 font_data = ExtResource( 1 )
 
-[sub_resource type="Theme" id=4]
+[sub_resource type="DynamicFont" id=5]
+size = 43
+outline_size = 2
+outline_color = Color( 0.121569, 0.0666667, 0.0666667, 1 )
+font_data = ExtResource( 1 )
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="Theme" id=6]
+
+[sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 0.956863, 0.294118, 0.0745098, 1 )
 
 [node name="demo_project" type="Node2D"]
 script = ExtResource( 2 )
 
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 1024.0
+margin_bottom = 88.0
+color = Color( 0.419608, 0.392157, 0.392157, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="back" type="Button" parent="."]
-margin_right = 174.0
+margin_left = 851.039
+margin_right = 1025.04
 margin_bottom = 88.0
 custom_fonts/font = SubResource( 1 )
 text = "BACK"
@@ -35,8 +50,7 @@ __meta__ = {
 }
 
 [node name="new_list" type="Button" parent="."]
-margin_left = 253.0
-margin_right = 445.0
+margin_right = 192.0
 margin_bottom = 88.0
 custom_fonts/font = SubResource( 1 )
 text = "New_list"
@@ -45,34 +59,24 @@ __meta__ = {
 }
 
 [node name="project_view" type="ScrollContainer" parent="."]
-margin_top = 122.0
-margin_right = 1026.0
+margin_top = 88.0
+margin_right = 1024.0
 margin_bottom = 600.0
-rect_clip_content = false
+mouse_filter = 1
 size_flags_horizontal = 11
 size_flags_vertical = 11
 follow_focus = true
-scroll_horizontal = 3
-scroll_vertical = 3
+scroll_horizontal = 100
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="list_container" type="HBoxContainer" parent="project_view"]
-margin_bottom = 478.0
+margin_right = 1024.0
+margin_bottom = 512.0
+size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 11
-
-[node name="blank" type="Control" parent="."]
-margin_left = -446.892
-margin_top = 45.4437
-margin_right = -246.892
-margin_bottom = 105.444
-rect_min_size = Vector2( 0, 60 )
-size_flags_horizontal = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="card" type="Label" parent="."]
 margin_left = -477.845
@@ -80,7 +84,7 @@ margin_top = 13.4437
 margin_right = -277.845
 margin_bottom = 73.4437
 rect_min_size = Vector2( 0, 60 )
-mouse_filter = 1
+mouse_default_cursor_shape = 2
 custom_styles/normal = SubResource( 2 )
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -103,6 +107,7 @@ __meta__ = {
 [node name="ColorRect" type="ColorRect" parent="Control"]
 margin_right = 1014.0
 margin_bottom = 600.0
+mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color( 0.0745098, 0.0705882, 0.0705882, 0.654902 )
@@ -118,7 +123,6 @@ margin_bottom = 324.836
 theme = ExtResource( 3 )
 align = 3
 clear_button_enabled = true
-caret_blink = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -146,16 +150,66 @@ __meta__ = {
 }
 
 [node name="debug_label" type="Label" parent="."]
-margin_left = 514.048
-margin_right = 688.048
+margin_left = 369.0
+margin_right = 689.0
 margin_bottom = 88.0
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0.901961, 0.827451, 0.0901961, 1 )
+custom_colors/font_color_shadow = Color( 0.796078, 0.0666667, 0.0666667, 1 )
+custom_constants/shadow_offset_x = 6
+custom_constants/shadow_offset_y = -2
+text = "Demo project"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="list" type="VBoxContainer" parent="."]
+margin_left = -203.877
+margin_top = 88.0
+margin_right = -3.87689
+margin_bottom = 209.0
+rect_min_size = Vector2( 200, 10 )
+mouse_filter = 2
+size_flags_vertical = 0
+theme = ExtResource( 3 )
+custom_constants/separation = 13
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+demo_card_path = NodePath("../card")
+
+[node name="detail" type="Label" parent="list"]
+margin_right = 200.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 0, 60 )
+focus_mode = 2
+mouse_filter = 1
+theme = SubResource( 6 )
+custom_styles/normal = SubResource( 7 )
 custom_fonts/font = SubResource( 3 )
-text = "debug"
+text = "name of the "
+align = 1
+valign = 1
+autowrap = true
+
+[node name="new_card_name" type="LineEdit" parent="list"]
+margin_top = 73.0
+margin_right = 200.0
+margin_bottom = 121.434
+theme = ExtResource( 3 )
+align = 3
+clear_button_enabled = true
+placeholder_text = "add new_card"
+caret_blink = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+visible = false
 margin_left = -246.892
 margin_top = 13.4437
 margin_right = -46.892
@@ -171,47 +225,15 @@ margin_bottom = 478.0
 size_flags_vertical = 3
 color = Color( 0.227451, 0.196078, 0.196078, 1 )
 
-[node name="list" type="VBoxContainer" parent="."]
-margin_left = -246.892
-margin_top = 254.444
-margin_right = -46.892
-margin_bottom = 491.444
-rect_min_size = Vector2( 200, 10 )
-size_flags_vertical = 3
-theme = ExtResource( 3 )
-custom_constants/separation = 13
-script = ExtResource( 4 )
+[node name="board" type="Control" parent="."]
+margin_left = 132.0
+margin_top = 148.0
+margin_right = 912.0
+margin_bottom = 535.0
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
-demo_card_path = NodePath("../card")
-
-[node name="new_card_name" type="LineEdit" parent="list"]
-margin_right = 200.0
-margin_bottom = 48.4343
-theme = ExtResource( 3 )
-align = 3
-clear_button_enabled = true
-placeholder_text = "add new_card"
-caret_blink = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="detail" type="Label" parent="list"]
-margin_top = 61.0
-margin_right = 200.0
-margin_bottom = 121.0
-rect_min_size = Vector2( 0, 60 )
-focus_mode = 2
-mouse_filter = 1
-theme = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
-custom_fonts/font = SubResource( 3 )
-text = "name of the "
-align = 1
-valign = 1
-autowrap = true
 [connection signal="pressed" from="new_list" to="." method="_on_new_list_pressed"]
 [connection signal="text_entered" from="Control/LineEdit" to="." method="_on_LineEdit_text_entered"]
 [connection signal="pressed" from="Control/done" to="." method="_on_done_pressed"]

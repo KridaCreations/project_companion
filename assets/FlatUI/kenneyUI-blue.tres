@@ -227,6 +227,7 @@ CheckButton/styles/hover = null
 CheckButton/styles/hover_pressed = null
 CheckButton/styles/normal = null
 CheckButton/styles/pressed = null
+HBoxContainer/icons/ = null
 HSlider/icons/grabber = SubResource( 16 )
 HSlider/icons/grabber_disabled = null
 HSlider/icons/grabber_highlight = SubResource( 16 )
