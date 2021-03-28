@@ -11,7 +11,6 @@ var follow = false
 var offset = Vector2(0,0)
 
 #variables_for children movement
-var blank_card
 var demo_card
 var card_focused = false
 var focused_card = false
@@ -21,8 +20,10 @@ func _ready():
 		root = get_tree().get_current_scene()
 	if demo_card == null:
 		demo_card = root.get_node("card")
-	get_node("new_card_name").connect("text_entered",self,"_on_new_card_name_text_entered")
-	get_node("detail").connect("gui_input",self,"_on_detail_gui_input")
+	if !get_node("new_card_name").is_connected("text_entered",self,"_on_new_card_name_text_entered"):
+		get_node("new_card_name").connect("text_entered",self,"_on_new_card_name_text_entered")
+	if !get_node("detail").is_connected("gui_input",self,"_on_detail_gui_input"):
+		get_node("detail").connect("gui_input",self,"_on_detail_gui_input")
 	for i in get_children():
 		if i != get_node("detail") and i != get_node("new_card_name"):
 			i.root = root
@@ -43,8 +44,8 @@ func _on_new_card_name_text_entered(new_text):
 		new_card.mouse_filter = MOUSE_FILTER_PASS
 		new_card.text = new_text
 		new_card.root = root
-		new_card.blank_card = blank_card
-		new_card.connect("gui_input",new_card,"_on_card_gui_input")
+		if !new_card.is_connected("gui_input",new_card,"_on_card_gui_input"):
+			new_card.connect("gui_input",new_card,"_on_card_gui_input")
 		$new_card_name.text = ""
 		
 		

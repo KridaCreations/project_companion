@@ -11,7 +11,6 @@ var focused_card = false
 var scene_location 
 var child_focused = false
 var focused_node = null
-var blank_card_index = -1
 
 
 
@@ -90,7 +89,9 @@ func _physics_process(delta):
 				focused_card.last_position = i.get_child(i.get_child_count()-1).get_global_position()
 				i.add_child_below_node(i.get_child(i.get_child_count()-2),focused_card)
 				focused_card.owner = self
-				focused_card.connect("gui_input",focused_card,"_on_card_gui_input")
+				if !focused_card.is_connected("gui_input",focused_card,"_on_card_gui_input"):
+					focused_card.connect("gui_input",focused_card,"_on_card_gui_input")
+				
 				for j in i.get_children():
 					if j.get_global_rect().has_point(mouse_position) and j != focused_card and j != i.get_node("new_card_name") and j != i.get_node("detail"):
 						focused_card.last_position = j.get_global_position()
@@ -116,12 +117,13 @@ func _on_LineEdit_text_entered(new_text):
 		new_node.set_owner(self)
 		new_node.root = self
 		new_node.get_node("detail").text = new_text
-		new_node.get_node("new_card_name").connect("text_entered",new_node,"_on_new_card_name_text_entered")
-		new_node.get_node("detail").connect("gui_input",new_node,"_on_detail_gui_input")
+		if !new_node.get_node("new_card_name").is_connected("text_entered",new_node,"_on_new_card_name_text_entered"):
+			new_node.get_node("new_card_name").connect("text_entered",new_node,"_on_new_card_name_text_entered")
+		if !new_node.get_node("detail").is_connected("gui_input",new_node,"_on_detail_gui_input"):
+			new_node.get_node("detail").connect("gui_input",new_node,"_on_detail_gui_input")
 		for i in new_node.get_children():
 			i.set_owner(self)
 		new_node.demo_card = $card
-		new_node.blank_card = $blank
 		$Control/LineEdit.text = ""
 
 func _on_cancel_pressed():
@@ -137,17 +139,18 @@ func _on_done_pressed():
 		new_node.set_owner(self)
 		new_node.root = self
 		new_node.get_node("detail").text = $Control/LineEdit.text
-		new_node.get_node("new_card_name").connect("text_entered",new_node,"_on_new_card_name_text_entered")
-		new_node.get_node("detail").connect("gui_input",new_node,"_on_detail_gui_input")
+		if !new_node.get_node("new_card_name").is_connected("text_entered",new_node,"_on_new_card_name_text_entered"):
+			new_node.get_node("new_card_name").connect("text_entered",new_node,"_on_new_card_name_text_entered")
+		if !new_node.get_node("detail").is_connected("gui_input",new_node,"_on_detail_gui_input"):
+			new_node.get_node("detail").connect("gui_input",new_node,"_on_detail_gui_input")
 		for i in new_node.get_children():
 			i.set_owner(self)
 		new_node.demo_card = $card
-		new_node.blank_card = $blank
 		$Control/LineEdit.text = ""
 
 
 func _on_back_pressed():
 	var c = PackedScene.new()
 	c.pack(get_tree().get_current_scene())
-	ResourceSaver.save("res://projects/" + $debug_label.text +".tscn",c)
+	ResourceSaver.save("c://godot_repository/" + $debug_label.text +".tscn",c)
 	get_tree().change_scene("res://scences/main_screen.tscn")

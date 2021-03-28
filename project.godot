@@ -17,6 +17,7 @@ _global_script_class_icons={
 
 config/name="Project Companion"
 run/main_scene="res://scences/main_screen.tscn"
+config/custom_user_dir_name="c:/godot"
 config/icon="res://icon.png"
 
 [display]

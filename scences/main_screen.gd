@@ -22,24 +22,26 @@ onready var scene_button = $scene_opener
 
 func load_list():
 	var dir = Directory.new()
+	#print(dir.open(projects_folder))
+	if !dir.dir_exists(projects_folder):
+		dir.make_dir_recursive(projects_folder)
 	if dir.open(projects_folder) == OK:
-		dir.list_dir_begin(true)
+		dir.list_dir_begin(true,true)
+		#print(dir.get_current_dir())
 		var file_name = dir.get_next()
-		#print(file_name + "here")
 		while file_name != "":
 			if dir.current_is_dir():
-				pass#print("Found directory: " + file_name)
+				pass
 			else:
-				#print("Found file: " + file_name)
 				var new_button = scene_button.duplicate(4)
-				
 				var c = file_name
 				c.erase(c.length()-5,5)
 				new_button.name = c
 				new_button.associated_scene = projects_folder + file_name
 				list_of_scenes.add_child(new_button)
 				new_button.text = c
-				new_button.connect("pressed",new_button,"open_scene")
+				if !new_button.is_connected("pressed",new_button,"open_scene"):
+					new_button.connect("pressed",new_button,"open_scene")
 				
 			file_name = dir.get_next()
 	else:
@@ -50,7 +52,6 @@ func save(string):
 	pass
 	
 func _ready():
-	#print("here")
 	load_list()
 	$Control.visible = false
 	
@@ -63,35 +64,17 @@ func _process(delta):
 func _on_start_project_pressed():
 	$Control.visible = true
 	
-#func save(content):
-#    var file = File.new()
-#    file.open("user://save_game.dat", File.WRITE)
-#    file.store_string(content)
-#    file.close()
-#
-#func load():
-#    var file = File.new()
-#    file.open("user://save_game.dat", File.READ)
-#    var content = file.get_as_text()
-#    file.close()
-#    return content
-
 
 
 
 func _on_LineEdit_text_entered(new_text):
 	if new_text != "":
 		var new_scene  = demo_project.instance()
-		new_scene.get_node("debug_label").text = new_text
-		#new_scene.scene_location = "res://projects/" + new_text +".tscn" 
+		new_scene.get_node("debug_label").text = new_text 
 		demo_project.pack(new_scene)
-		ResourceSaver.save("res://projects/" + new_text +".tscn",demo_project)
-		get_tree().change_scene("res://projects/" + new_text +".tscn")
+		ResourceSaver.save("user://" + new_text +".tscn",demo_project)
+		get_tree().change_scene("user://" + new_text +".tscn")
 		$Control.visible = false
-#		var file = File.new()
-#		file.open("res://save_data/save_game.dat", File.WRITE)
-#		file.store_string("res://projects/" + new_text +".tscn")
-#		file.close()
 
 
 func _on_cancel_pressed():
@@ -102,10 +85,8 @@ func _on_done_pressed():
 	if $Control/LineEdit.text != "":
 		var new_scene  = demo_project.instance()
 		new_scene.get_node("debug_label").text = $Control/LineEdit.text
-		#new_scene.scene_location = "res://projects/" + $Control/LineEdit.text +".tscn" 
 		demo_project.pack(new_scene)
-		
-		ResourceSaver.save("res://projects/" + $Control/LineEdit.text +".tscn",demo_project)
-		get_tree().change_scene("res://projects/" + $Control/LineEdit.text +".tscn")
+		ResourceSaver.save(projects_folder + $Control/LineEdit.text +".tscn",demo_project)
+		get_tree().change_scene(projects_folder + $Control/LineEdit.text +".tscn")
 		$Control.visible = false
 

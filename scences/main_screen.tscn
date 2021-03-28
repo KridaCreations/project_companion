@@ -28,7 +28,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 demo_project = ExtResource( 4 )
-projects_folder = "res://projects/"
+projects_folder = "c://godot_repository/"
 
 [node name="new_project" type="Button" parent="."]
 margin_top = 97.4433
