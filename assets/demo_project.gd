@@ -12,7 +12,9 @@ var scene_location
 var child_focused = false
 var focused_node = null
 
-
+func load_line_editor(node):
+	get_node("value_editor").visible = true
+	$value_editor.node_to_be_edited = node
 
 func _ready():
 	delete_option.visible = false

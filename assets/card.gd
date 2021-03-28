@@ -12,11 +12,13 @@ func _physics_process(delta):
 
 func _on_card_gui_input(event):
 	if event is InputEventMouseButton:
-		if event.pressed == true:
-			follow = true
-			root.card_focused = true
-			root.focused_card = self
-			last_position = get_global_position() 
-			offset = get_global_mouse_position() - self.get_global_position()
-
+		if event.button_index == 1:
+			if event.pressed == true:
+				follow = true
+				root.card_focused = true
+				root.focused_card = self
+				last_position = get_global_position() 
+				offset = get_global_mouse_position() - self.get_global_position()
+		elif event.button_index == 2:
+			root.load_line_editor(self)
 			

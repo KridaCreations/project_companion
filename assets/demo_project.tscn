@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/fonts/eurocine/Eurocine Regular.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/demo_project.gd" type="Script" id=2]
@@ -7,8 +7,7 @@
 [ext_resource path="res://assets/card.gd" type="Script" id=5]
 [ext_resource path="res://assets/icons/1x/dustbin_open.png" type="Texture" id=6]
 [ext_resource path="res://assets/icons/1x/dustbin_close.png" type="Texture" id=7]
-
-
+[ext_resource path="res://assets/value_editor.gd" type="Script" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
@@ -71,7 +70,7 @@ __meta__ = {
 }
 
 [node name="project_view" type="ScrollContainer" parent="."]
-margin_top = 88.0
+margin_top = 132.0
 margin_right = 1024.0
 margin_bottom = 600.0
 rect_clip_content = false
@@ -86,7 +85,7 @@ __meta__ = {
 
 [node name="list_container" type="HBoxContainer" parent="project_view"]
 margin_right = 1024.0
-margin_bottom = 512.0
+margin_bottom = 468.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 11
@@ -152,6 +151,60 @@ __meta__ = {
 }
 
 [node name="cancel" type="Button" parent="Control"]
+margin_left = 529.942
+margin_top = 324.836
+margin_right = 623.942
+margin_bottom = 384.836
+custom_fonts/font = SubResource( 1 )
+text = "cancel"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="value_editor" type="Control" parent="."]
+visible = false
+margin_right = 1024.0
+margin_bottom = 600.0
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="value_editor"]
+margin_right = 1014.0
+margin_bottom = 600.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0.0745098, 0.0705882, 0.0705882, 0.654902 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit" type="LineEdit" parent="value_editor"]
+margin_left = 402.09
+margin_top = 271.836
+margin_right = 626.09
+margin_bottom = 324.836
+theme = ExtResource( 3 )
+align = 3
+clear_button_enabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="done" type="Button" parent="value_editor"]
+margin_left = 402.09
+margin_top = 324.836
+margin_right = 489.09
+margin_bottom = 384.836
+custom_fonts/font = SubResource( 1 )
+text = "done"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="cancel" type="Button" parent="value_editor"]
 margin_left = 529.942
 margin_top = 324.836
 margin_right = 623.942
@@ -232,6 +285,7 @@ __meta__ = {
 }
 
 [node name="delete_option" type="Control" parent="."]
+visible = false
 margin_right = 1025.0
 margin_bottom = 88.0
 __meta__ = {
@@ -239,8 +293,9 @@ __meta__ = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="delete_option"]
+margin_top = 1.41422
 margin_right = 1025.0
-margin_bottom = 88.0
+margin_bottom = 89.4142
 color = Color( 0.0745098, 0.0705882, 0.0705882, 0.654902 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -264,4 +319,7 @@ __meta__ = {
 [connection signal="text_entered" from="Control/LineEdit" to="." method="_on_LineEdit_text_entered"]
 [connection signal="pressed" from="Control/done" to="." method="_on_done_pressed"]
 [connection signal="pressed" from="Control/cancel" to="." method="_on_cancel_pressed"]
+[connection signal="text_entered" from="value_editor/LineEdit" to="value_editor" method="_on_LineEdit_text_entered"]
+[connection signal="pressed" from="value_editor/done" to="value_editor" method="_on_done_pressed"]
+[connection signal="pressed" from="value_editor/cancel" to="value_editor" method="_on_cancel_pressed"]
 [connection signal="text_entered" from="list/new_card_name" to="list" method="_on_new_card_name_text_entered"]

@@ -3,8 +3,12 @@ extends Control
 export (PackedScene) var demo_project
 export (String) var projects_folder 
 
+onready var delete_button = $delete_option
 onready var list_of_scenes = $ScrollContainer/VBoxContainer
-onready var scene_button = $scene_opener 
+onready var scene_button = $scene_opener
+
+
+ 
 #func dir_contents(path):
 #    var dir = Directory.new()
 #    if dir.open(path) == OK:
@@ -20,29 +24,30 @@ onready var scene_button = $scene_opener
 #        print("An error occurred when trying to access the path.")
 
 
+
 func load_list():
 	var dir = Directory.new()
-	#print(dir.open(projects_folder))
 	if !dir.dir_exists(projects_folder):
 		dir.make_dir_recursive(projects_folder)
 	if dir.open(projects_folder) == OK:
 		dir.list_dir_begin(true,true)
-		#print(dir.get_current_dir())
 		var file_name = dir.get_next()
 		while file_name != "":
 			if dir.current_is_dir():
 				pass
-			else:
+			elif  file_name.ends_with(".tscn"):
 				var new_button = scene_button.duplicate(4)
 				var c = file_name
 				c.erase(c.length()-5,5)
+				new_button.root = self
 				new_button.name = c
 				new_button.associated_scene = projects_folder + file_name
 				list_of_scenes.add_child(new_button)
 				new_button.text = c
-				if !new_button.is_connected("pressed",new_button,"open_scene"):
-					new_button.connect("pressed",new_button,"open_scene")
-				
+				if !new_button.is_connected("button_up",new_button,"open_scene"):
+					new_button.connect("button_up",new_button,"open_scene")
+				if !new_button.is_connected("gui_input",new_button,"gui_input"):
+					new_button.connect("gui_input",new_button,"gui_input")
 			file_name = dir.get_next()
 	else:
 		print("An error occurred when trying to access the path.")
@@ -52,6 +57,7 @@ func save(string):
 	pass
 	
 func _ready():
+	$delete_option.visible = false
 	load_list()
 	$Control.visible = false
 	

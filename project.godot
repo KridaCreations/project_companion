@@ -23,6 +23,8 @@ boot_splash/fullsize=false
 boot_splash/use_filter=false
 boot_splash/bg_color=Color( 0.141176, 0.141176, 0.141176, 1 )
 config/icon="res://assets/icons/1x/Asset 3.png"
+config/macos_native_icon="res://assets/icons/1x/Asset 3.png"
+config/windows_native_icon="res://assets/icons/1x/favicon.ico"
 
 [display]
 

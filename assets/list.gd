@@ -55,27 +55,30 @@ func set_path(val):
 
 func _on_detail_gui_input(event):
 	if event is InputEventMouseButton:
-		if event.pressed == true:
-			follow = true
-			root.child_focused = true
-			root.focused_node = self
-			last_position = get_global_position()
-			offset = get_global_mouse_position() - self.get_global_position()
-			
-		elif event.pressed == false:
-			root.focused_node = null
-			root.child_focused = false
-			root.delete_option.visible = false
-			if root.delete_option.get_node("Sprite").frame == 1:
-					queue_free()
-			
-			#root.child_focused = false
-			var posx = (get_global_rect().size.x + root.list_container.get("custom_constants/separation")) * (get_index())
-			last_position = root.list_container.get_global_position() + Vector2((posx),0) - Vector2(root.project_view.scroll_horizontal,root.project_view.scroll_vertical) - - Vector2(root.project_view.scroll_horizontal,root.project_view.scroll_vertical)
-			set_global_position(last_position)
-			follow = false
-			#root.child_focused = false
-			
-			offset = Vector2(0,0)
+		if event.button_index == 2:
+			root.load_line_editor($detail)
+		elif event.button_index == 1:
+			if event.pressed == true:
+				follow = true
+				root.child_focused = true
+				root.focused_node = self
+				last_position = get_global_position()
+				offset = get_global_mouse_position() - self.get_global_position()
+				
+			elif event.pressed == false:
+				root.focused_node = null
+				root.child_focused = false
+				root.delete_option.visible = false
+				if root.delete_option.get_node("Sprite").frame == 1:
+						queue_free()
+				
+				#root.child_focused = false
+				var posx = (get_global_rect().size.x + root.list_container.get("custom_constants/separation")) * (get_index())
+				last_position = root.list_container.get_global_position() + Vector2((posx),0) - Vector2(root.project_view.scroll_horizontal,root.project_view.scroll_vertical) - - Vector2(root.project_view.scroll_horizontal,root.project_view.scroll_vertical)
+				set_global_position(last_position)
+				follow = false
+				#root.child_focused = false
+				
+				offset = Vector2(0,0)
 
 
