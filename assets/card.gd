@@ -19,21 +19,4 @@ func _on_card_gui_input(event):
 			last_position = get_global_position() 
 			offset = get_global_mouse_position() - self.get_global_position()
 
-#			var index = get_index()
-#			get_parent().remove_child(self)
-#			root.add_child(self)
-			
-
-#			if child_node.get_parent():
-#			    child_node.get_parent().remove_child(child_node)
-#				add_child(child_node)	
-#		elif event.pressed == false:
-#			#print("here")
-#			follow = false
-#			root.card_focused = false
-#			root.focused_card = null
-#			set_global_position(last_position)	
-#			last_position = get_global_position()
-#			offset = Vector2(0,0)
-			
 			

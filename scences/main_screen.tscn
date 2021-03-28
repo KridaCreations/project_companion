@@ -1,9 +1,22 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/fonts/eurocine/Eurocine Regular.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://scences/main_screen.gd" type="Script" id=2]
+[ext_resource path="res://assets/FlatUI/kenneyUI-yellow.tres" type="Theme" id=3]
+[ext_resource path="res://assets/demo_project.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scences/scene_opener.gd" type="Script" id=5]
 
 [sub_resource type="DynamicFont" id=1]
+size = 40
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=3]
+
+[sub_resource type="DynamicFont" id=4]
+size = 20
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=5]
 size = 40
 font_data = ExtResource( 1 )
 
@@ -14,26 +27,114 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+demo_project = ExtResource( 4 )
+projects_folder = "res://projects/"
 
-[node name="start_project" type="Button" parent="."]
-margin_left = 315.72
-margin_top = 173.752
-margin_right = 650.72
-margin_bottom = 249.752
+[node name="new_project" type="Button" parent="."]
+margin_top = 97.4433
+margin_right = 335.0
+margin_bottom = 173.443
 custom_fonts/font = SubResource( 1 )
-text = "start_project"
+text = "New Project"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="quit_button" type="Button" parent="."]
-margin_left = 315.72
-margin_top = 273.341
-margin_right = 650.72
-margin_bottom = 349.341
+margin_top = 516.282
+margin_right = 335.0
+margin_bottom = 592.282
 custom_fonts/font = SubResource( 1 )
 text = "quit"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="pressed" from="start_project" to="." method="_on_start_project_pressed"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = 545.0
+margin_right = 1022.0
+margin_bottom = 600.0
+color = Color( 0.615686, 0.560784, 0.109804, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+margin_left = 587.97
+margin_top = 49.0
+margin_right = 987.97
+margin_bottom = 557.0
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+margin_right = 400.0
+margin_bottom = 508.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 5
+
+[node name="Control" type="Control" parent="."]
+visible = false
+margin_right = 1022.0
+margin_bottom = 600.0
+theme = SubResource( 3 )
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0.215686, 0.184314, 0.184314, 0.760784 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit" type="LineEdit" parent="Control"]
+margin_left = 372.375
+margin_top = 212.706
+margin_right = 661.375
+margin_bottom = 287.706
+theme = ExtResource( 3 )
+
+[node name="cancel" type="Button" parent="Control"]
+margin_left = 545.0
+margin_top = 288.0
+margin_right = 661.0
+margin_bottom = 371.0
+custom_fonts/font = SubResource( 4 )
+text = "Cancel"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="done" type="Button" parent="Control"]
+margin_left = 372.375
+margin_top = 288.0
+margin_right = 488.375
+margin_bottom = 371.0
+custom_fonts/font = SubResource( 4 )
+text = "Done"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="scene_opener" type="Button" parent="."]
+margin_top = -70.7151
+margin_right = 335.0
+margin_bottom = 0.284897
+rect_min_size = Vector2( 335, 71 )
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 5 )
+text = "button"
+clip_text = true
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="new_project" to="." method="_on_start_project_pressed"]
+[connection signal="text_entered" from="Control/LineEdit" to="." method="_on_LineEdit_text_entered"]
+[connection signal="pressed" from="Control/cancel" to="." method="_on_cancel_pressed"]
+[connection signal="pressed" from="Control/done" to="." method="_on_done_pressed"]

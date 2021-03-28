@@ -17,15 +17,15 @@ bg_color = Color( 0.886275, 0.913725, 0.0156863, 1 )
 size = 22
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=4]
 size = 43
 outline_size = 2
 outline_color = Color( 0.121569, 0.0666667, 0.0666667, 1 )
 font_data = ExtResource( 1 )
 
-[sub_resource type="Theme" id=6]
+[sub_resource type="Theme" id=5]
 
-[sub_resource type="StyleBoxFlat" id=7]
+[sub_resource type="StyleBoxFlat" id=6]
 bg_color = Color( 0.956863, 0.294118, 0.0745098, 1 )
 
 [node name="demo_project" type="Node2D"]
@@ -153,7 +153,7 @@ __meta__ = {
 margin_left = 369.0
 margin_right = 689.0
 margin_bottom = 88.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0.901961, 0.827451, 0.0901961, 1 )
 custom_colors/font_color_shadow = Color( 0.796078, 0.0666667, 0.0666667, 1 )
 custom_constants/shadow_offset_x = 6
@@ -187,8 +187,8 @@ margin_bottom = 60.0
 rect_min_size = Vector2( 0, 60 )
 focus_mode = 2
 mouse_filter = 1
-theme = SubResource( 6 )
-custom_styles/normal = SubResource( 7 )
+theme = SubResource( 5 )
+custom_styles/normal = SubResource( 6 )
 custom_fonts/font = SubResource( 3 )
 text = "name of the "
 align = 1
@@ -234,6 +234,7 @@ mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="pressed" from="back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="new_list" to="." method="_on_new_list_pressed"]
 [connection signal="text_entered" from="Control/LineEdit" to="." method="_on_LineEdit_text_entered"]
 [connection signal="pressed" from="Control/done" to="." method="_on_done_pressed"]
