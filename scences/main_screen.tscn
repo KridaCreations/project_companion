@@ -10,13 +10,13 @@
 size = 40
 font_data = ExtResource( 1 )
 
-[sub_resource type="Theme" id=3]
+[sub_resource type="Theme" id=2]
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=3]
 size = 20
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=4]
 size = 40
 font_data = ExtResource( 1 )
 
@@ -80,7 +80,7 @@ custom_constants/separation = 5
 visible = false
 margin_right = 1022.0
 margin_bottom = 600.0
-theme = SubResource( 3 )
+theme = SubResource( 2 )
 
 [node name="ColorRect" type="ColorRect" parent="Control"]
 margin_right = 1024.0
@@ -104,7 +104,7 @@ margin_left = 545.0
 margin_top = 288.0
 margin_right = 661.0
 margin_bottom = 371.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 text = "Cancel"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -115,7 +115,7 @@ margin_left = 372.375
 margin_top = 288.0
 margin_right = 488.375
 margin_bottom = 371.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 text = "Done"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -127,7 +127,7 @@ margin_right = 335.0
 margin_bottom = 0.284897
 rect_min_size = Vector2( 335, 71 )
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 text = "button"
 clip_text = true
 script = ExtResource( 5 )
