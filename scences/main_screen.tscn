@@ -12,10 +12,10 @@
 size = 40
 font_data = ExtResource( 1 )
 
-[sub_resource type="StyleBoxFlat" id=6]
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.921569, 0.894118, 0.164706, 1 )
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=3]
 size = 40
 outline_size = 5
 outline_color = Color( 0.921569, 0.231373, 0.141176, 1 )
@@ -24,17 +24,17 @@ extra_spacing_char = 7
 extra_spacing_space = 12
 font_data = ExtResource( 1 )
 
-[sub_resource type="Theme" id=2]
+[sub_resource type="Theme" id=4]
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=5]
 size = 20
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=6]
 size = 40
 font_data = ExtResource( 1 )
 
-[sub_resource type="SpriteFrames" id=5]
+[sub_resource type="SpriteFrames" id=7]
 animations = [ {
 "frames": [ ExtResource( 7 ), ExtResource( 6 ) ],
 "loop": true,
@@ -103,8 +103,8 @@ custom_constants/separation = 5
 margin_left = 545.0
 margin_right = 1022.0
 margin_bottom = 105.0
-custom_styles/normal = SubResource( 6 )
-custom_fonts/font = SubResource( 7 )
+custom_styles/normal = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "All Projects"
 align = 1
@@ -114,7 +114,7 @@ valign = 1
 visible = false
 margin_right = 1022.0
 margin_bottom = 600.0
-theme = SubResource( 2 )
+theme = SubResource( 4 )
 
 [node name="ColorRect" type="ColorRect" parent="Control"]
 margin_right = 1024.0
@@ -138,7 +138,7 @@ margin_left = 545.0
 margin_top = 288.0
 margin_right = 661.0
 margin_bottom = 371.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 5 )
 text = "Cancel"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -149,7 +149,7 @@ margin_left = 372.375
 margin_top = 288.0
 margin_right = 488.375
 margin_bottom = 371.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 5 )
 text = "Done"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -160,7 +160,7 @@ margin_top = -71.0
 margin_right = 335.0
 rect_min_size = Vector2( 335, 71 )
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 6 )
 text = "button"
 clip_text = true
 script = ExtResource( 5 )
@@ -179,7 +179,7 @@ __meta__ = {
 
 [node name="sprite" type="AnimatedSprite" parent="delete_option"]
 position = Vector2( 56.7071, 49 )
-frames = SubResource( 5 )
+frames = SubResource( 7 )
 [connection signal="pressed" from="new_project" to="." method="_on_start_project_pressed"]
 [connection signal="text_entered" from="Control/LineEdit" to="." method="_on_LineEdit_text_entered"]
 [connection signal="pressed" from="Control/cancel" to="." method="_on_cancel_pressed"]

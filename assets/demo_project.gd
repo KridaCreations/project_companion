@@ -31,7 +31,9 @@ func _input(event):
 				if focused_card != null:
 					focused_card.follow = false
 					focused_card.root.card_focused = false
-					focused_card.last_position = focused_card.get_parent().get_child(focused_card.get_index()-1).get_global_position() + Vector2(0,focused_card.get_global_rect().size.y + focused_card.get_parent().get("custom_constants/separation"))			
+					var previous_card = focused_card.get_parent().get_child(focused_card.get_index()-1)
+					focused_card.last_position = previous_card.get_global_position() + Vector2(0,previous_card.get_global_rect().size.y + focused_card.get_parent().get("custom_constants/separation"))			
+#focused_card.get_parent().get_child(focused_card.get_index()-1).get_global_position() + Vector2(0,focused_card.get_global_rect().size.y + focused_card.get_parent().get("custom_constants/separation"))								
 					focused_card.set_global_position(focused_card.last_position)	
 					focused_card.last_position = get_global_position()
 					focused_card.offset = Vector2(0,0)
